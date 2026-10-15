@@ -47,6 +47,8 @@ function resolveRef(alias, ref, importerDir) {
 }
 
 function registryNode(alias, key) {
+  // Patches are applied by pnpm only, shipping the unpatched tarball to npm users would silently drop them
+  if (key.includes("patch_hash=")) throw Error(`Patched dependency ${key} is not supported in npm-shrinkwrap.json`);
   const snapshot = lock.snapshots[key];
   if (snapshot === undefined) throw Error(`Missing snapshot ${key}`);
   // Strip peer dependency suffix `(...)`, snapshot keys may contain scopes so only look for "@" after the name
