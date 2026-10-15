@@ -21,6 +21,7 @@
     "lib",
     "bin",
     ".git-data.json",
+    "npm-shrinkwrap.json",
     "!**/*.tsbuildinfo"
   ],
   "bin": {

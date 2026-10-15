@@ -82,6 +82,11 @@ jobs:
           git config user.email 'temp@github.com'
           git commit -am "${{ steps.version.outputs.version }}"
 
+      # Pin the full production dependency tree of the CLI for `npm install`, see scripts/release/generate_npm_shrinkwrap.mjs
+      # Must run after the version is written so the shrinkwrap matches the published version.
+      - name: Generate npm-shrinkwrap.json
+        run: pnpm release:shrinkwrap
+
       - name: Publish to npm registry
         # Note: before https://github.com/ChainSafe/lodestar/commit/28e2c74cf0f1bede8b09c8c9fec26f54b367e3fd
         # We used `lerna publish --canary` option. However, since we now publish must version on branches,

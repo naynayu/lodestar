@@ -38,7 +38,8 @@
     "release:create-rc": "node scripts/release/create_rc.mjs",
     "release:tag-rc": "node scripts/release/tag_rc.mjs",
     "release:tag-stable": "node scripts/release/tag_stable.mjs",
-    "release:publish": "lerna publish from-package --yes --no-verify-access"
+    "release:shrinkwrap": "node scripts/release/generate_npm_shrinkwrap.mjs",
+    "release:publish": "pnpm release:shrinkwrap && lerna publish from-package --yes --no-verify-access"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",

@@ -90,3 +90,6 @@ temp/
 # Local development artifacts
 .venv/
 checkpoint_states/
+
+# Generated at publish time, see scripts/release/generate_npm_shrinkwrap.mjs
+npm-shrinkwrap.json
